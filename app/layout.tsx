@@ -3,6 +3,7 @@ import { Orbitron, Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 
+
 const orbitron = Orbitron({ 
   subsets: ["latin"], 
   variable: "--font-orbitron",
@@ -14,6 +15,7 @@ const montserrat = Montserrat({
   variable: "--font-montserrat", 
   display: "swap" 
 });
+
 
 export const metadata: Metadata = {
   title: "Impetus 9.0 | Chronicles of Innovation",
@@ -27,10 +29,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+
       <body className={`${orbitron.variable} ${montserrat.variable} bg-black text-white antialiased`}>
         <Navbar />
         {children}
       </body>
+
     </html>
   );
 }
