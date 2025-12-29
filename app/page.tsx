@@ -143,7 +143,7 @@ export default function HeroSection() {
         </div>
 
         {/* Scroll Down Indicator */}
-        <div className="absolute bottom-25 bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 animate-bounce pointer-events-none select-none">
+        <div className="absolute bottom-25 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 animate-bounce pointer-events-none select-none">
           <span className="text-[10px] uppercase tracking-[0.3em] text-white/50 font-medium">
             Scroll Down
           </span>
