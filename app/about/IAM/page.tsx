@@ -330,7 +330,7 @@ export default function IAMPage() {
               fontFamily: "Roboto, sans-serif",
               letterSpacing: "1px",
               textAlign: "left",
-              textAlign: "justify",
+              // textAlign: "justify",
               padding:"15px"
             }}
           >
