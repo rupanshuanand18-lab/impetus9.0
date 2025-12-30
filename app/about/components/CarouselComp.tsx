@@ -6,11 +6,19 @@ import Carousel from "react-elastic-carousel";
 import { useRef } from "react";
 import { Typography } from "@mui/material";
 
-export default function CarouselComp() {
-  const carousel = useRef(null);
+// Define a type for the carousel instance methods you need
+type CarouselRef = {
+  goTo: (index: number) => void;
+  // Add other methods like 'next', 'prev', etc., if you use them
+};
 
+export default function CarouselComp() {
+  // Explicitly type the useRef hook
+  const carousel = useRef<CarouselRef | null>(null);
+
+  // Explicitly type the handleEnd function parameter
   const handleEnd = ({ index }: { index: number }) => {
-    if (index == 8) {
+    if (index === 8) { // Use '===' for comparison
       setTimeout(() => {
         carousel.current?.goTo(0);
       }, 1000);
