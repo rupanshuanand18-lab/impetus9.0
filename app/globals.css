@@ -18,6 +18,15 @@
     --foreground: #ededed;
   }
 }
+.font-display {
+  font-family: var(--font-orbitron), sans-serif;
+  letter-spacing: 0.14em;
+}
+
+.font-body {
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+}
+
 
 body {
   background: var(--background);

@@ -11,6 +11,12 @@ const config: Config = {
       fontFamily: {
         orbitron: ["var(--font-orbitron)", "sans-serif"], // Futuristic Title
         montserrat: ["var(--font-montserrat)", "sans-serif"], // Clean Body text
+        bebas: ["var(--font-bebas)"],
+        roboto: ["var(--font-roboto)"],
+        rowdies: ["var(--font-rowdies)"],
+        nunito: ["var(--font-nunito)"],
+        display: ["var(--font-bebas)"], 
+        body: ["var(--font-roboto)"],
       },
       colors: {
         "impetus-orange": "#FF4500", // Fire

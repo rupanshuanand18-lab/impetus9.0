@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Orbitron, Montserrat } from "next/font/google";
+import { Orbitron, Montserrat,Inter, Bebas_Neue, Roboto, Rowdies, Nunito } from "next/font/google";
 import "./globals.css";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
+const inter = Inter({ subsets: ["latin"] });
 const orbitron = Orbitron({
   subsets: ["latin"],
   variable: "--font-orbitron",
@@ -15,6 +16,29 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
   display: "swap",
+});
+
+const bebas = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-bebas", // We will use this variable in Tailwind
+});
+
+const roboto = Roboto({
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
+  variable: "--font-roboto",
+});
+
+const rowdies = Rowdies({
+  weight: ["300", "400", "700"],
+  subsets: ["latin"],
+  variable: "--font-rowdies",
+});
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  variable: "--font-nunito",
 });
 
 export const metadata: Metadata = {
@@ -30,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${orbitron.variable} ${montserrat.variable} bg-black text-white antialiased`}
+        className={`${orbitron.variable} ${montserrat.variable} ${inter.className} ${bebas.variable} ${roboto.variable} ${rowdies.variable} ${nunito.variable}bg-black text-white antialiased`}
       >
         <Navbar />
         {children}
