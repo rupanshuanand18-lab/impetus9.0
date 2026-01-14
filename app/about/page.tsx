@@ -76,6 +76,9 @@ export default function AboutPage() {
       <AboutIIEST />
       <AboutImpetus />
       <AboutDepartmentSME />
+      <p className="text-center text-gray-500 italic py-20">
+        Engineering the future, rooted in legacy.
+      </p>
     </div>
   );
 }

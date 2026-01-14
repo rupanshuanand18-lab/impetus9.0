@@ -1,60 +1,69 @@
 'use client';
 
-import Image from 'next/image';
+import Image from "next/image";
+import AnimatedSection from "./ui/AnimatedSection"
+import Section from "./ui/Section";
 
-export default function IIESTShibpur() {
+export default function AboutIIEST() {
   return (
-    <section className="relative w-full bg-black text-white py-24 px-6 border-b border-white/10">
-      <div className="max-w-5xl mx-auto text-center">
-        
-        {/* Logo Section */}
-        <div className="relative w-32 h-32 mx-auto mb-8">
-          <Image
-            src="/iiest_iiest.png" 
-            alt="IIEST Shibpur Logo"
-            fill
-            className="object-contain"
-            priority
-          />
-        </div>
+    <Section >
+      <div className="max-w-7xl mx-auto  md:grid-cols-2 gap-16 items-center">
+      <AnimatedSection>
+        <div className="max-w-5xl mx-auto text-center">
 
-        {/* Heading - Single Color per line */}
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-2">
-          IIEST SHIBPUR
-        </h1>
-        <h2 className="text-xl md:text-2xl font-medium text-amber-500 tracking-widest uppercase mb-12">
-          169 Years of Excellence
-        </h2>
-
-        {/* Content - Centered & Clean */}
-        <div className="grid md:grid-cols-2 gap-12 text-left">
-          
-          {/* Block 1 */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-bold text-white border-b border-amber-500/30 pb-2 inline-block">
-              History
-            </h3>
-            <p className="text-gray-300 leading-relaxed">
-              Founded in 1856, IIEST Shibpur is the second-oldest engineering college in India. 
-              From its origins as the Civil Engineering College to Bengal Engineering and Science University, 
-              it has stood as a pillar of academic brilliance for over a century.
-            </p>
+          {/* Logo */}
+          <div className="relative w-28 h-28 mx-auto mb-8">
+            <Image
+              src="/iiest_logo.png"
+              alt="IIEST Shibpur Logo"
+              fill
+              className="object-contain"
+              priority
+            />
           </div>
 
-          {/* Block 2 */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-bold text-white border-b border-amber-500/30 pb-2 inline-block">
-              Today
-            </h3>
-            <p className="text-gray-300 leading-relaxed">
-              Recognized as an Institute of National Importance by the Government of India, 
-              it ranks among the top premier institutes in the country. With a global alumni network 
-              and cutting-edge research, IIEST continues to nurture the innovators of tomorrow.
-            </p>
-          </div>
+          {/* Headings */}
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
+            IIEST SHIBPUR
+          </h1>
 
+          <h2 className="mt-2 text-sm md:text-xl tracking-[0.3em] uppercase text-amber-500">
+            169 Years of Excellence
+          </h2>
+
+          {/* Timeline */}
+          <div className="relative mt-16 grid md:grid-cols-2 gap-12 text-left">
+            <div className="hidden md:block absolute left-1/2 top-0 h-full w-px bg-amber-500/20" />
+
+            <AnimatedSection delay={0.1}>
+              <div>
+                <h3 className="text-lg font-semibold border-b border-amber-500/30 inline-block pb-1">
+                  History
+                </h3>
+                <p className="mt-4 text-gray-300 leading-relaxed">
+                  Founded in 1856, IIEST Shibpur is the second-oldest engineering
+                  college in India. From Civil Engineering College to BESU,
+                  it has stood for academic excellence for over a century.
+                </p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.2}>
+              <div>
+                <h3 className="text-lg font-semibold border-b border-amber-500/30 inline-block pb-1">
+                  Today
+                </h3>
+                <p className="mt-4 text-gray-300 leading-relaxed">
+                  An Institute of National Importance, IIEST ranks among India’s
+                  premier institutions, driving innovation through research and
+                  a strong global alumni network.
+                </p>
+              </div>
+            </AnimatedSection>
+          </div>
         </div>
+      </AnimatedSection>
       </div>
-    </section>
+    </Section>
   );
 }

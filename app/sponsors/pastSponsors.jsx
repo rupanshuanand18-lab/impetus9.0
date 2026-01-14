@@ -19,6 +19,19 @@ import unacademy from "./images/unacademy.png";
 import tatasteel from "./images/tatasteel.png";
 import ibm from "./images/ibm.png";
 import indianoil from "./images/indianoil.png";
+import spices from "./images/7Spices.png";
+import alobus from "./images/Alo bus.png";
+import aswawa from "./images/Asawa insulation.png";
+import bancharam from "./images/Bancharam.png";
+import blackbird from "./images/BLACKBIRDROBOTIX.png";
+import haldiram from "./images/Haldirams.png";
+import hero from "./images/Hero motocorp.webp";
+import hyundai from "./images/Hyundai.png";
+import idp from "./images/idp.jpg";
+import iic from "./images/iic.jpg";
+import jsw from "./images/JSW-steel.png";
+import mcpro from "./images/McPro.png";
+import thinkagain from "./images/ThinkAgainLab.jpg";
 
 // Sponsor Data
 const sponsors = [
@@ -40,6 +53,19 @@ const sponsors = [
   { name: "Tata Steel", logo: tatasteel },
   { name: "IBM", logo: ibm },
   { name: "Indian Oil", logo: indianoil },
+  { name: "spices", logo: spices },
+  { name: "alobus", logo: alobus },
+  { name: "aswawa", logo: aswawa },
+  { name: "bancharam", logo: bancharam },
+  // { name: "blackbird", logo: blackbird },
+  { name: "haldiram", logo: haldiram },
+  { name: "hero", logo: hero },
+  { name: "hyundai", logo: hyundai },
+  { name: "idp", logo: idp },
+  { name: "iic", logo: iic },
+  { name: "jsw", logo: jsw },
+  { name: "mcpro", logo: mcpro },
+  { name: "thinkagain", logo: thinkagain },
 ];
 
 export default function PastSponsors() {
