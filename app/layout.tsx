@@ -53,21 +53,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-  className={`
-    ${orbitron.variable}
-    ${montserrat.variable}
-    ${bebas.variable}
-    ${roboto.variable}
-    ${rowdies.variable}
-    ${nunito.variable}
-    font-body
-    bg-black
-    text-white
-    antialiased
-  `}
->
-
+      <body className={`${orbitron.variable} ${montserrat.variable} ${inter.className} ${bebas.variable} ${roboto.variable} ${rowdies.variable} ${nunito.variable} bg-black text-white antialiased`}>
        <EraProvider>
         <Navbar />
         {children}
