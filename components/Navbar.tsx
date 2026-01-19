@@ -3,30 +3,35 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { useEra } from "@/context/EraContext"; // Import the hook
+import { useEra } from "@/context/EraContext";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { currentEraIndex } = useEra(); // Consume the global state
+  const { currentEraIndex } = useEra();
 
   const closeMenu = () => setIsMenuOpen(false);
 
   // --- SYNC LOGIC ---
-  // These correspond to: Mechanism (Amber), Propulsion (Orange), Automation (Cyan), Simulation (Emerald)
-  // Matching the "eras" array in your HeroSection
   const borderColors = [
-    "border-amber-500/60 shadow-amber-900/20",   // Era 0
-    "border-orange-500/60 shadow-orange-900/20", // Era 1
-    "border-cyan-400/60 shadow-cyan-900/20",     // Era 2
-    "border-emerald-400/60 shadow-emerald-900/20" // Era 3
+    "border-amber-500/60 shadow-amber-900/20",
+    "border-orange-500/60 shadow-orange-900/20",
+    "border-cyan-400/60 shadow-cyan-900/20",
+    "border-emerald-400/60 shadow-emerald-900/20",
+  ];
+
+  // Era Colors for text (to make the active menu look cool)
+  const textColors = [
+    "text-amber-400",
+    "text-orange-400",
+    "text-cyan-400",
+    "text-emerald-400"
   ];
 
   const currentBorderStyle = borderColors[currentEraIndex] || borderColors[0];
+  const currentTextColor = textColors[currentEraIndex] || textColors[0];
 
-  // Common style for the mobile floating buttons
   const mobileIconPillStyle = `h-14 w-14 bg-white/10 backdrop-blur-xl border ${currentBorderStyle} shadow-lg rounded-full flex items-center justify-center transition-all duration-1000 active:scale-95`;
 
-  // Full list for Desktop
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
@@ -37,17 +42,17 @@ export default function Navbar() {
     { name: "IAM", href: "/IAM" },
   ];
 
-  // Filter links
   const mobileBottomTabs = navLinks.filter((link) =>
     ["Home", "Events", "IAM"].includes(link.name)
   );
+  
   const mobileDropdownLinks = navLinks.filter((link) =>
     !["Home", "Events", "IAM"].includes(link.name)
   );
 
   return (
     <>
-      {/* --- DESKTOP NAVBAR (Floating Pill) --- */}
+      {/* --- DESKTOP NAVBAR --- */}
       <nav
         className={`
           h-15 z-100
@@ -63,7 +68,6 @@ export default function Navbar() {
           font-roboto
         `}
       >
-        {/* Logo Section */}
         <Link href="/" className="flex items-center gap-3" onClick={closeMenu}>
           <div className="relative h-14 w-14 ml-8">
             <Image
@@ -76,7 +80,6 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop Links */}
         <div className="flex gap-9 text-white text-[17px] items-center mr-8 font-display">
           {navLinks.map((link) => (
             <Link
@@ -113,54 +116,44 @@ export default function Navbar() {
         />
       </Link>
 
-      {/* 2. Top Right: Hamburger Toggle */}
-      <button
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className={`
-          ${mobileIconPillStyle}
-          fixed top-4 right-4 z-50
-          md:hidden text-white
-        `}
-        aria-label="Toggle menu"
-      >
-        {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
-      </button>
-
-      {/* 3. Hamburger Dropdown */}
+      {/* 2. POP-OVER MENU (Right Bottom) */}
+      {/* Positioned absolute relative to viewport. 
+          bottom-24 puts it just above the bottom navbar (which is h-16 + bottom-6 spacing).
+          right-6 aligns it with the right edge of the navbar.
+      */}
       {isMenuOpen && (
         <div
           className={`
             md:hidden
-            fixed top-20 left-4 right-4 z-40
-            bg-white/10 
+            fixed bottom-24 right-6 z-50
+            w-40 py-3
+            bg-black/80
             backdrop-blur-xl 
             border ${currentBorderStyle}
             shadow-2xl
             rounded-2xl
-            p-6
-            animate-in fade-in slide-in-from-top-4 duration-200
-            transition-colors duration-1000
+            flex flex-col items-center gap-4
+            animate-in slide-in-from-bottom-5 fade-in zoom-in-95 duration-200
             font-roboto
           `}
         >
-          <div className="flex flex-col items-center gap-6 text-white text-lg font-medium">
-            {mobileDropdownLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                onClick={closeMenu}
-                className={
-                  link.name === "IAM" ? "text-cyan-300 font-bold" : ""
-                }
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
+          {mobileDropdownLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              onClick={closeMenu}
+              className={`
+                text-white font-medium text-lg tracking-wide
+                hover:${currentTextColor} transition-colors
+              `}
+            >
+              {link.name}
+            </Link>
+          ))}
         </div>
       )}
 
-      {/* 4. Bottom Tab Bar */}
+      {/* 3. Bottom Tab Bar */}
       <div
         className={`
         md:hidden
@@ -197,6 +190,21 @@ export default function Navbar() {
             </span>
           </Link>
         ))}
+
+        {/* Menu Toggle Button */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className={`
+            flex flex-col items-center justify-center w-full h-full gap-1
+            active:scale-95 transition-transform 
+            ${isMenuOpen ? currentTextColor : "text-white"} // Highlight when open
+          `}
+        >
+          {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+          <span className="text-[10px] uppercase tracking-wider font-semibold">
+            {isMenuOpen ? "Close" : "Menu"}
+          </span>
+        </button>
       </div>
     </>
   );

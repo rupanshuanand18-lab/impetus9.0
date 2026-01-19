@@ -66,7 +66,7 @@ export default function BentoGrid() {
                         Society of Mechanical Engineers, IIEST Shibpur
                      </h3>
                      <a
-                        href="/about/aboutpage"
+                        href="/about"
                         className="inline-flex items-center gap-2 mt-4 text-xs font-medium text-orange-400 hover:text-orange-300 transition-colors"
                      >
                         Know more about us
@@ -89,7 +89,7 @@ export default function BentoGrid() {
                         Flagship Event Of IMPETUS.
                      </p>
                      <a
-                        href="/about/IAM"
+                        href="/IAM"
                         className="inline-flex items-center gap-2 mt-4 text-xs font-medium text-purple-400 hover:text-purple-300 transition-colors"
                      >
                         Visit IAM Page
