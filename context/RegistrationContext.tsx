@@ -19,8 +19,6 @@ interface RegistrationContextType {
   members: Array<{ name: string; phone: string; roll: string }>;
   event: any;
   minMembers: number;
-  captchaToken: string | null;
-  setCaptchaToken: (token: string | null) => void;
 
   // --- NEW: PAYMENT STATE (Add these 4 lines) ---
   

@@ -16,7 +16,6 @@ export const RegistrationProvider = ({ children, event, onClose }: any) => {
   const [receiptId, setReceiptId] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [deviceFingerprint, setDeviceFingerprint] = useState("");
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   
   // Form Data
   const [teamName, setTeamName] = useState("");
@@ -116,7 +115,6 @@ export const RegistrationProvider = ({ children, event, onClose }: any) => {
 
   const handlePrev = () => { 
     setErrorMsg("");
-    setCaptchaToken(null);
     setStep((prev) => prev - 1);
   };
 
@@ -125,12 +123,6 @@ export const RegistrationProvider = ({ children, event, onClose }: any) => {
     const error = validateStep(step);
     if (error) { setErrorMsg(error); return; }
     
-    // Only check Captcha if it's the final submission
-    // (Note: In your UI, Captcha is only shown on the last step, so this is safe)
-    if (!captchaToken) {
-      setErrorMsg("Please complete the hCaptcha verification.");
-      return;
-    }
 
     setIsLoading(true);
     setErrorMsg("");
@@ -152,7 +144,6 @@ export const RegistrationProvider = ({ children, event, onClose }: any) => {
       ...(isInternal && { capRoll: captain.roll.trim() }),
       participantType: isInternal ? "INTERNAL" : "EXTERNAL",
       teamMembers: validMembers,
-      captchaToken: captchaToken,
       deviceFingerprint: deviceFingerprint,
     };
 
@@ -177,7 +168,6 @@ export const RegistrationProvider = ({ children, event, onClose }: any) => {
         formData.append("capName", basePayload.capName);
         formData.append("capPhone", basePayload.capPhone);
         formData.append("participantType", "EXTERNAL");
-        formData.append("captchaToken", basePayload.captchaToken || "");
         formData.append("deviceFingerprint", basePayload.deviceFingerprint);
         
         // Append JSON strings for complex objects
@@ -280,7 +270,7 @@ export const RegistrationProvider = ({ children, event, onClose }: any) => {
   return (
     <RegistrationContext.Provider value={{
       step, totalSteps, isInternal, isLoading, isSuccess, receiptId, errorMsg, setErrorMsg,
-      teamName, captain, members, event, minMembers, captchaToken, setCaptchaToken,
+      teamName, captain, members, event, minMembers,
        paymentFile, setPaymentFile,
 
       toggleInternal: () => {

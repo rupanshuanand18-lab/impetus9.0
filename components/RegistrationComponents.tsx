@@ -2,7 +2,6 @@
 import { useEffect, useRef } from "react";
 import { X, ChevronRight, ChevronLeft, Download, CheckCircle, AlertCircle, Users,Clock,QrCode,Smartphone,Upload } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { useRegistrationContext } from "../context/RegistrationContext";
 
 // --- HELPER COMPONENT ---
@@ -245,7 +244,7 @@ export const StepMember = () => {
 // --- 5. FOOTER (UPDATED LAYOUT) ---
 export const FormFooter = () => {
     // Removed handlePrev from destructuring as it is no longer used here
-    const { step, totalSteps, handleNext, handleSubmit, isLoading, members, event, setCaptchaToken } = useRegistrationContext();
+    const { step, totalSteps, handleNext, handleSubmit, isLoading, members, event } = useRegistrationContext();
 
     const filledCount = 1 + members.filter((m: any) => m.name.trim().length > 0).length;
     const isTeamValid = filledCount >= event.teamSize.min && filledCount <= event.teamSize.max;
@@ -262,11 +261,6 @@ export const FormFooter = () => {
                         animate={{ opacity: 1, x: 0 }}
                         className="origin-left scale-[0.65] sm:scale-90"
                     >
-                        <HCaptcha
-                            sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ""}
-                            onVerify={(token) => setCaptchaToken(token)}
-                            theme="dark"
-                        />
                     </motion.div>
                 )}
 
